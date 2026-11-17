@@ -1,0 +1,23 @@
+{
+  "name": "mastra-durable-lease-stall-repro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone reproduction of a durable Mastra run stopping after an event-loop stall without a competing takeover.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "repro": "node lease-min.mjs 0 && node lease-min.mjs 5000 && node lease-min.mjs 5000 inflight",
+    "baseline": "node lease-min.mjs 0",
+    "stall": "node lease-min.mjs 5000",
+    "inflight": "node lease-min.mjs 5000 inflight"
+  },
+  "dependencies": {
+    "@mastra/core": "1.83.0",
+    "@mastra/pg": "1.36.0",
+    "ai": "6.0.319",
+    "pg": "8.23.1",
+    "zod": "3.25.76"
+  }
+}
